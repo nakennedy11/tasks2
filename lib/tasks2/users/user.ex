@@ -4,7 +4,7 @@ defmodule Tasks2.Users.User do
 
   schema "users" do
     field :email, :string
-    field :manager, :id
+    field :manager, :id, null: true
 
     timestamps()
   end
@@ -12,7 +12,7 @@ defmodule Tasks2.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email])
-    |> validate_required([:email])
+    |> cast(attrs, [:email, :manager])
+    |> validate_required([:email, :manager])
   end
 end
