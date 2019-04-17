@@ -12,7 +12,7 @@ defmodule Tasks2.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :manager])
-    |> validate_required([:email, :manager])
+    |> cast(attrs, [:email])
+    |> validate_required([:email])
   end
 end

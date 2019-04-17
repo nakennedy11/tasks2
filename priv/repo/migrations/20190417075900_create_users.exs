@@ -4,11 +4,10 @@ defmodule Tasks2.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :email, :string
-      add :manager, references(:users, on_delete: :nothing)
+      add :manager, references(:users, on_delete: :nothing), null: true
 
       timestamps()
     end
     create unique_index(:users, [:email])
-    create index(:users, [:manager])
   end
 end

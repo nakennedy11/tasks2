@@ -1,0 +1,17 @@
+Welcome to Noah's ToDo List for this homework woooo-
+----------
+
+First we want to test the creation of each thing with an iex -S mix
+  - or probably just seed actually
+  - definitely seed
+
+Then make them create nice and then show nice
+  - probably do the top persistent piece early on, logging in
+  - create a user, task,
+  - make things assign and list like underlings
+
+Time from the buttons
+  - make the javascript timer and then send it back to the server
+    - js and ajax and bears oh my
+
+Make it pretty

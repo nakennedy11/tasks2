@@ -13,6 +13,12 @@
   <%= textarea f, :desc %>
   <%= error_tag f, :desc %>
 
+  <%= label f, :user %>
+  # TODO: make this better
+  <%= textarea f, :user %>
+  <%= error_tag f, :user %>
+
+
   <div>
     <%= submit "Save" %>
   </div>
