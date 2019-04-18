@@ -10,8 +10,8 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :tasks2, Tasks2Web.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "example.com", port: 80],
+  http: [:inet6, port: System.get_env("PORT") || 3333],
+  url: [host: "tasks2.noahkennedy.xyz", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -68,4 +68,20 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-import_config "prod.secret.exs"
+path = Path.expand("~/.config/tasks2.secret")
+unless File.exists?(path) do
+  secret = Base.encode16(:crypto.strong_rand_bytes(32))
+  File.write!(path, secret)
+end
+secret = File.read!(path)
+
+config :Tasks2, Tasks2Web.Endpoint,
+  secret_key_base: secret
+# Configure your database
+config :tasks2, Tasks2.Repo,
+  username: "task",
+  password: "task",
+  database: "tasks2_prod",
+  hostname: "localhost",
+  port: "3333",
+  pool_size: 10
