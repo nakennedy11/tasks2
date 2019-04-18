@@ -10,7 +10,7 @@
     <strong>Manager:</strong>
     <%= if @user.manager do %>
       <%= Tasks2.Users.get_user(@user.manager).email %>
-    <%= else %>
+    <% else %>
       <u> There is no manager listed for this user. </u>
     <%= end %>
   </li>

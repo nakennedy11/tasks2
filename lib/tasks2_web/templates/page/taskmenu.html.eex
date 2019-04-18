@@ -1,0 +1,2 @@
+<%= link "List of My Tasks", to: Routes.task_path(@conn, :index) %>
+<%= link "Create New Task", to: Routes.task_path(@conn, :new) %>
