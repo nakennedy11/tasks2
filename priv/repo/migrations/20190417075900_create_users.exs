@@ -4,7 +4,7 @@ defmodule Tasks2.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :email, :string
-      add :manager, references(:users, on_delete: :nothing), null: true
+      add :manager, references(:users), null: true
 
       timestamps()
     end

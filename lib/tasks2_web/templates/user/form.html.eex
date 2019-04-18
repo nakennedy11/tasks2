@@ -10,7 +10,7 @@
   <%= error_tag f, :email %>
 
   <%= label f, :manager %>
-  <%= text_input f, :manager %>
+  <%= select f, :manager, Tasks2.Users.list_users_enum %>
   <%= error_tag f, :email %>
 
   <div>

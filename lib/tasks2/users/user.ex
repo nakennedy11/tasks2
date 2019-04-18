@@ -12,7 +12,8 @@ defmodule Tasks2.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email])
+    |> cast(attrs, [:email, :manager])
     |> validate_required([:email])
+    |> unique_constraint(:email)
   end
 end

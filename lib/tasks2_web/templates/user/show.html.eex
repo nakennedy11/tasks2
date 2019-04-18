@@ -4,9 +4,16 @@
 
   <li>
     <strong>Email:</strong>
-    <%= @user.email %>
+    <b><%= @user.email %></b>
   </li>
-
+  <li>
+    <strong>Manager:</strong>
+    <%= if @user.manager do %>
+      <%= Tasks2.Users.get_user(@user.manager).email %>
+    <%= else %>
+      <u> There is no manager listed for this user. </u>
+    <%= end %>
+  </li>
 </ul>
 
 <span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span>

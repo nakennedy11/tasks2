@@ -21,6 +21,19 @@ defmodule Tasks2.Users do
     Repo.all(User)
   end
 
+  def list_users_enum do
+    Repo.all(User)
+    |> Enum.map(&{&1.email, &1.id})
+  end
+
+  def underlings(manager) do
+    query = from u in "users",
+      where: u.manager == ^manager or u.id == ^manager,
+      select: {u.email, u.id}
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single user.
 
@@ -36,6 +49,15 @@ defmodule Tasks2.Users do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  def get_user(id) do
+    Repo.one from u in User,
+      where: u.id == ^id
+  end
+
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+  end
 
   @doc """
   Creates a user.

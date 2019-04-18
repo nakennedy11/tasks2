@@ -14,8 +14,7 @@
   <%= error_tag f, :desc %>
 
   <%= label f, :user %>
-  # TODO: make this better
-  <%= textarea f, :user %>
+  <%= select f, :user, Tasks2.Users.underlings(@current_user.id) %>
   <%= error_tag f, :user %>
 
 

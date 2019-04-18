@@ -12,6 +12,30 @@
     <%= @task.desc %>
   </li>
 
+  <li>
+    <strong>Assigned User:</strong>
+    <%= Tasks2.Users.get_user!(@task.user).email %>
+  </li>
+  <table>
+    <thead>
+      <th>Start time</th>
+      <th>End time</th>
+    </thead>
+    <%= for time <- Tasks2.Times.list_times do %>
+    <%= if Tasks2.Tasks.get_task(time.task_id).id == @task.id do %>
+    <tr class="tb-show" data-tb-id="<%= time.id %>">
+      <td> <%= time.start %> </td>
+      <td> <%= time.end %> </td> 
+    </tr>
+
+    <script>
+    window.time_stamp_path= "<%= Routes.time_stamp_path(@conn, :update, time.id) %>";
+    </script>
+
+    <% end %>
+    <% end %>
+  </table>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>

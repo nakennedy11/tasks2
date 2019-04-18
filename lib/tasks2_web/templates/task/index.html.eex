@@ -5,24 +5,42 @@
     <tr>
       <th>Title</th>
       <th>Desc</th>
-
+      <th>User</th>
+      <th>Start</th>
+      <th>Stop</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for task <- @tasks do %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.desc %></td>
-
-      <td>
-        <%= link "Show", to: Routes.task_path(@conn, :show, task) %>
-        <%= link "Edit", to: Routes.task_path(@conn, :edit, task) %>
-        <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
+  <%= for task <- @tasks do %>
+  <%= if @current_user && @current_user.id == task.user do %>
+  <tr>
+    <td><%= task.title %></td>
+    <td><%= task.desc %></td>
+    <td>
+      <%= Tasks2.Users.get_user(task.user).email %>
+    </td>
+    <td>
+      <button id="start" type="button" data-task="<% task.id %>" class="btn btn-success">
+        START
+      </button>
+    </td>
+    <td>
+      <button id="start" type="button" data-task="<% task.id %>" class="btn btn-danger">
+        STOP
+      </button>
+    </td>
+    <td>
+      <%= link "Show", to: Routes.task_path(@conn, :show, task) %>
+      <%= link "Edit", to: Routes.task_path(@conn, :edit, task) %>
+      <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"] %>
+    </td>
+  </tr>
+  <% end %>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Task", to: Routes.task_path(@conn, :new) %></span>
+<script>
+window.time_path = "<%=Routes.time_path(@conn, :create) %>";
+</script>

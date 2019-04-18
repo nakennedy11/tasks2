@@ -15,14 +15,21 @@ defmodule Tasks2Web.TimeController do
   end
 
   def create(conn, %{"time" => time_params}) do
-    case Times.create_time(time_params) do
-      {:ok, time} ->
-        conn
-        |> put_flash(:info, "Time created successfully.")
-        |> redirect(to: Routes.time_path(conn, :show, time))
+    # case Times.create_time(time_params) do
+    #   {:ok, time} ->
+    #     conn
+    #     |> put_flash(:info, "Time created successfully.")
+    #     |> redirect(to: Routes.time_path(conn, :show, time))
+    #
+    #   {:error, %Ecto.Changeset{} = changeset} ->
+    #     render(conn, "new.html", changeset: changeset)
+    # end
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+    with {:ok, %Time{} = time} <- Tasks2.Times.create_time(time_params) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", Routes.time_path(conn, :show, time))
+      |> render("show.json", time: time)
     end
   end
 
