@@ -12,7 +12,7 @@
       <%= Tasks2.Users.get_user(@user.manager).email %>
     <% else %>
       <u> There is no manager listed for this user. </u>
-    <%= end %>
+    <% end %>
   </li>
 </ul>
 
