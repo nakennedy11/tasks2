@@ -13,4 +13,7 @@ defmodule Tasks2Web.PageController do
     render(conn, "profile.html")
   end
 
+  def taskreport(conn, _params) do
+    render(conn, "taskreport.html")
+  end
 end
