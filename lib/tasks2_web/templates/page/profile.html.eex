@@ -1,0 +1,33 @@
+<h1><%= @current_user.email %>'s Profile</h1>
+
+
+<div>
+ <strong>Manager: </strong>
+  <%= if @current_user.manager do %>
+    <%= Tasks2.Users.get_user!(@current_user.manager).email %>
+  <% else %>
+    <p> There is no manager listed for this user. </p>
+  <% end %>
+</div>
+
+
+<table class="table-striped">
+  <thead>
+    <th>Underlings</th>
+  </thead>
+  <tbody>
+    <%= if Enum.count(Tasks2.Users.underlings(@current_user.id)) > 1 do %>
+    <tr>
+      <td>
+    	<%= for underling <- Tasks2.Users.list_users do %>
+        <%= if @current_user.id == underling.manager do %>
+        <li>
+          <%= underling.email %>
+        </li>
+        <% end %>
+    <% end %>
+  </td>
+</tr>
+    <% end %>
+  </tbody>
+</table>

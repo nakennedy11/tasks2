@@ -8,4 +8,9 @@ defmodule Tasks2Web.PageController do
   def taskmenu(conn, _params) do
     render(conn, "taskmenu.html")
   end
+
+  def profile(conn, _params) do
+    render(conn, "profile.html")
+  end
+
 end

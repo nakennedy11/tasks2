@@ -16,20 +16,22 @@
     <strong>Assigned User:</strong>
     <%= Tasks2.Users.get_user!(@task.user).email %>
   </li>
-  <table>
+  <table class="table table-striped">
     <thead>
       <th>Start time</th>
       <th>End time</th>
+      <th>Edit Time</th>
     </thead>
     <%= for time <- Tasks2.Times.list_times do %>
-    <%= if Tasks2.Tasks.get_task!(time.task_id).id == @task.id do %>
+    <%= if Tasks2.Tasks.get_task!(time.task).id == @task.id do %>
     <tr class="tb-show" data-tb-id="<%= time.id %>">
       <td> <%= time.start %> </td>
-      <td> <%= time.end %> </td>
+      <td> <%= time.stop %> </td>
+      <td> <%= link "Edit Time", to: Routes.time_path(@conn, :edit, time) %> </td>
     </tr>
 
     <script>
-    window.time_stamp_path= "<%= Routes.time_path(@conn, :update, time.id) %>";
+    window.time_path= "<%= Routes.time_path(@conn, :update, time.id) %>";
     </script>
 
     <% end %>

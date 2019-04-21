@@ -34,10 +34,18 @@
 		<div class="col"> <a class="nav-link" href="/">Home</a> </div>
 	      </li>
 	      <li>
-		<div class="col"> <a class="nav-link" href="/users/new">Create Account</a> </div>
+      <div class="col">
+        <%= if @current_user do %>
+          <a class="nav-link" href="/profile">Profile</a>
+        <% else %>
+          <a class="nav-link" href="/users/new">Create Account</a>
+        <% end %>
+      </div>
 	      </li>
-              <li>
-		<div class="col"> <a class="nav-link" href="/taskmenu">Task Menu</a> </div>
+        <li>
+		        <div class="col">
+                <a class="nav-link" href="/taskmenu">Task Menu</a>
+            </div>
 	      </li>
 	    </ul> </div>
 	</nav>

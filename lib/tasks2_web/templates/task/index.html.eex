@@ -21,12 +21,12 @@
       <%= Tasks2.Users.get_user(task.user).email %>
     </td>
     <td>
-      <button id="start" type="button" data-task="<% task.id %>" class="btn btn-success">
+      <button id="start" type="button" data-task-id="<%= task.id %>" class="btn btn-success">
         START
       </button>
     </td>
     <td>
-      <button id="start" type="button" data-task="<% task.id %>" class="btn btn-danger">
+      <button id="stop" type="button" data-task-id="<%= task.id %>" class="btn btn-danger">
         STOP
       </button>
     </td>

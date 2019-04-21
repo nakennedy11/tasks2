@@ -5,7 +5,7 @@ defmodule Tasks2.Times.Time do
   schema "times" do
     field :start, :string
     field :stop, :string
-    field :task, :id
+    field :task, :id, null: false
 
     timestamps()
   end
@@ -13,7 +13,7 @@ defmodule Tasks2.Times.Time do
   @doc false
   def changeset(time, attrs) do
     time
-    |> cast(attrs, [:start, :stop])
-    |> validate_required([:start, :stop])
+    |> cast(attrs, [:start, :stop, :task])
+    |> validate_required([:start, :stop, :task])
   end
 end

@@ -23,13 +23,13 @@ import "bootstrap";
 $(function () {
 
   $('#start').click((ev) => {
-    let time = new Date().toString("hh:mm:ss tt");
+    let time = new Date().toUTCString();//.toString("hh:mm:ss tt");
     window.start = time;
   })
 
   $('#stop').click((ev) => {
-    let time = new Date().toString("hh:mm:ss tt");
-    let task = $(ev.target).data('task');
+    let stop = new Date().toUTCString();
+    let task = $(ev.target).data('task-id');
 
     let text = JSON.stringify({
       time: {
@@ -38,11 +38,26 @@ $(function () {
         stop: stop
       }
     });
+    console.log("Time being sent through ajax: " + text);
+    //
+    // $.ajax(time_path, {
+    //   method: "post",
+    //   dataType: "json",
+    //   contentType: "application/jason; charset=UTF-8",
+    //   data: text
+    // });
     $.ajax(time_path, {
-      method: "post",
-      dataType: "json",
-      contentType: "application/jason; charset=UTF-8",
-      data: text
-    });
+     method: "post",
+     dataType: "json",
+     contentType: "application/json; charset=UTF-8",
+     data: text,
+     success: function (data) {
+
+   // let correspondingDate = $(".tb-show[data-tb-id=" + timeid + "]");
+   // $(wrappingRow).hide();
+   // $(correspondingDate).show();
+
+}
+  });
   });
 })

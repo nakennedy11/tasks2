@@ -15,4 +15,3 @@
 </ul>
 
 <span><%= link "Edit", to: Routes.time_path(@conn, :edit, @time) %></span>
-<span><%= link "Back", to: Routes.time_path(@conn, :index) %></span>

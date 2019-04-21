@@ -26,8 +26,10 @@ defmodule Tasks2Web.Router do
 
     get "/", PageController, :index
     get "/taskmenu", PageController, :taskmenu
+    get "/profile", PageController, :profile
     resources "/users", UserController
     resources "/tasks", TaskController
+    resources "/times", TimeController, only: [:edit]
     resources "/sessions", SessionController, only: [:create, :delete], singleton: true
   end
 

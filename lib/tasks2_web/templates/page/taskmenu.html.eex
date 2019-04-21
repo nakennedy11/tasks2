@@ -1,2 +1,6 @@
-<%= link "List of My Tasks", to: Routes.task_path(@conn, :index) %>
-<%= link "Create New Task", to: Routes.task_path(@conn, :new) %>
+<div class="row">
+  <div class="col-12">
+  <%= link "Create New Task", to: Routes.task_path(@conn, :new) %>
+  <%= link "List of My Tasks", to: Routes.task_path(@conn, :index) %>
+  </div>
+</div>
