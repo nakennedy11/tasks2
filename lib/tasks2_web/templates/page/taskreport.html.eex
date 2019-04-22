@@ -1,0 +1,20 @@
+<h1>Task Report</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Task</th>
+      <th>Show</th>
+    </tr>
+  </thead>
+  <%= for task <- Tasks2.Tasks.list_tasks do %>
+    <%= if Tasks2.Users.get_user(task.user).manager == @current_user.id do %>
+    <tr>
+      <td> <%= Tasks2.Users.get_user(task.user).email %></td>
+      <td> <%= task.title %> </td>
+      <td> <%= link "Show", to: Routes.task_path(@conn, :show, task) %> </td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
